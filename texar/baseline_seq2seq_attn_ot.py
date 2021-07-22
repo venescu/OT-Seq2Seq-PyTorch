@@ -158,7 +158,7 @@ class Seq2SeqAttnOT(nn.Module):
             ot_loss = torch.mean(OT.ipot_distance(
                 cosine_cost, device=self.device))
 
-            return mle_loss + 0.1 * ot_loss
+            return mle_loss + 1. * ot_loss  #0.1
         else:
             start_tokens = memory.new_full(
                 batch['target_length'].size(), self.bos_token_id,
